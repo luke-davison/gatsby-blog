@@ -1,0 +1,36 @@
+h1 {
+    font-family: Cabin;
+    font-size: 2.48832rem;
+    letter-spacing: 2px;
+    line-height: 1.125;
+    margin-bottom: 16px;
+    margin-top: 0;
+    font-weight: 700;
+    color: #2c313f;
+}
+
+p {
+    color: #74767e;
+    font-family: Raleway;
+    font-size: 1rem;
+    word-wrap: break-word;
+    margin-bottom: 32px;
+}
+
+html {
+    font-size: 20px;
+}
+
+.page {
+    margin: auto;
+    max-width: 900px;
+    padding: 32px 16px;
+}
+
+blockquote p {
+    font-size: 0.69444rem;
+    margin-top: 8px;
+    margin-bottom: 16px;
+    text-align: center;
+    color: #767676;
+}
