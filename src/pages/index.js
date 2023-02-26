@@ -1,6 +1,8 @@
 import * as React from 'react'
 import { graphql, Link } from 'gatsby'
 
+import Page from "../components/page"
+
 import '@fontsource/cabin'
 import '@fontsource/raleway'
 
@@ -14,7 +16,7 @@ export const query = graphql
             }
         }
         allMdx(
-            sort: {fields: [frontmatter___date], order: DESC},
+            sort: {fields: [frontmatter___written], order: DESC},
             filter: {frontmatter: {published: {eq: true}}}
         ){
             nodes {
@@ -22,8 +24,8 @@ export const query = graphql
                 excerpt(pruneLength: 250)
                 frontmatter {
                     title
-                    date
-                    written
+                    date(formatString: "Do MMMM YYYY")
+                    written(formatString: "Do MMMM YYYY")
                     category
                 }
                 fields {
@@ -36,7 +38,7 @@ export const query = graphql
 
 const HomePage = ({ data }) => {
   return (
-      <div>
+      <Page>
           <div>
               <h1>{data.site.siteMetadata.title}</h1>
               <p>{data.site.siteMetadata.description}</p>
@@ -46,14 +48,14 @@ const HomePage = ({ data }) => {
               {data.allMdx.nodes.map(({ excerpt, frontmatter, fields }, index) => (
                   <div key={index}>
                       <Link to={fields.slug}>
-                          <h1>{frontmatter.title}</h1>
+                          <h2>{frontmatter.title}</h2>
                       </Link>
                       <p>{frontmatter.date}</p>
                       <p>{excerpt}</p>
                   </div>
               ))}
           </div>
-      </div>
+      </Page>
   )
 }
 

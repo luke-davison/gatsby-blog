@@ -17,6 +17,12 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
         })
 
         createNodeField({
+            name: `date`,
+            node,
+            value: node.frontmatter.date,
+        })
+
+        createNodeField({
             name: `category`,
             node,
             value: node.frontmatter.category,
@@ -38,6 +44,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
                         id
                         fields {
                             slug
+                            written
                         }
                     }
                 }
@@ -50,13 +57,17 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     }
 
     // Create blog post pages.
-    const posts = result.data.allMdx.edges
+    const posts = Array.from(result.data.allMdx.edges)
+    posts.sort((postA, postB) => new Date(postB.node.fields.written).getTime() - new Date(postA.node.fields.written).getTime())
 
     posts.forEach(({ node }, index) => {
+        const previousId = posts.find((previous, previousIndex) => previousIndex === index + 1)?.node.id
+        const nextId = posts.find((next, nextIndex) => nextIndex === index - 1)?.node.id
+
         createPage({
             path: node.fields.slug,
             component: path.resolve(`./src/components/post-page-template.js`),
-            context: { id: node.id },
+            context: { id: node.id, previousId, nextId },
         })
     })
 }
