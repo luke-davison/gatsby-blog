@@ -11,6 +11,7 @@
   },
   plugins: [
     `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
     `gatsby-remark-images`,
       {
           resolve: `gatsby-plugin-mdx`,

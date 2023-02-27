@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { graphql, Link } from 'gatsby'
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 import Page from "../components/page"
 
@@ -21,12 +22,17 @@ export const query = graphql
         ){
             nodes {
                 id
-                excerpt(pruneLength: 250)
+                excerpt(pruneLength: 100)
                 frontmatter {
                     title
                     date(formatString: "Do MMMM YYYY")
                     written(formatString: "Do MMMM YYYY")
                     category
+                    featuredImage {
+                        childImageSharp {
+                            gatsbyImageData(width: 400, height: 400, transformOptions: {cropFocus: CENTER})
+                        }
+                    }
                 }
                 fields {
                     slug
@@ -44,16 +50,19 @@ const HomePage = ({ data }) => {
               <p>{data.site.siteMetadata.description}</p>
           </div>
 
-          <div>
-              {data.allMdx.nodes.map(({ excerpt, frontmatter, fields }, index) => (
-                  <div key={index}>
-                      <Link to={fields.slug}>
-                          <h2>{frontmatter.title}</h2>
-                      </Link>
-                      <p>{frontmatter.date}</p>
-                      <p>{excerpt}</p>
-                  </div>
-              ))}
+          <div className="list-of-posts">
+              {data.allMdx.nodes.map(({ excerpt, frontmatter, fields }, index) => {
+                let featuredImg = getImage(frontmatter.featuredImage?.childImageSharp?.gatsbyImageData)
+                return (
+                        <Link to={fields.slug}>
+                    <div className="post-container" key={index}>
+                        <GatsbyImage image={featuredImg} />
+                        <h2 className="post-title">{frontmatter.title}</h2>
+                        <p className="post-date">{frontmatter.date}</p>
+                    </div>
+                        </Link>
+                )
+              })}
           </div>
       </Page>
   )

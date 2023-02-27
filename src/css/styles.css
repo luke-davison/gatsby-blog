@@ -76,3 +76,30 @@ a {
 .page-bottom-navigation .previous-link {
     align-items: flex-end;
 }
+
+.list-of-posts {
+    display: grid;
+    gap: 24px;
+    grid-template-columns: 1fr 1fr;
+}
+
+.list-of-posts .post-container {
+    position: relative;
+    width: 400px;
+    height: 400px;
+}
+
+.list-of-posts .post-title {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+
+.list-of-posts .post-date {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+}
