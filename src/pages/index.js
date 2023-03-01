@@ -54,13 +54,13 @@ const HomePage = ({ data }) => {
               {data.allMdx.nodes.map(({ excerpt, frontmatter, fields }, index) => {
                 let featuredImg = getImage(frontmatter.featuredImage?.childImageSharp?.gatsbyImageData)
                 return (
-                        <Link to={fields.slug}>
-                    <div className="post-container" key={index}>
-                        <GatsbyImage image={featuredImg} />
-                        <h2 className="post-title">{frontmatter.title}</h2>
-                        <p className="post-date">{frontmatter.date}</p>
-                    </div>
-                        </Link>
+                    <Link key={index} to={fields.slug}>
+                        <div className="post-container">
+                            <GatsbyImage image={featuredImg} />
+                            <h2 className="post-title">{frontmatter.title}</h2>
+                            <p className="post-date">{frontmatter.date}</p>
+                        </div>
+                    </Link>
                 )
               })}
           </div>

@@ -6,7 +6,7 @@
 
  module.exports = {
   siteMetadata: {
-      title: `Luke and Betty's Pictures of Stuff`,
+      title: `The Travels of Luke and Betty`,
       description: `This is where Luke and Betty post pictures of their stuff.  And words about that stuff.`,
   },
   plugins: [
