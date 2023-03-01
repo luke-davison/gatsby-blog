@@ -1,73 +1,81 @@
-const { createFilePath } = require(`gatsby-source-filesystem`);
+const { createFilePath } = require(`gatsby-source-filesystem`)
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
-    const { createNodeField } = actions
+  const { createNodeField } = actions
 
-    if (node.internal.type === `Mdx`) {
-        createNodeField({
-            name: `slug`,
-            node,
-            value: node.frontmatter.slug ? `/posts${node.frontmatter.slug}` : `/posts${createFilePath({ node, getNode })}`,
-        })
+  if (node.internal.type === `Mdx`) {
+    createNodeField({
+      name: `slug`,
+      node,
+      value: node.frontmatter.slug
+        ? `/posts${node.frontmatter.slug}`
+        : `/posts${createFilePath({ node, getNode })}`,
+    })
 
-        createNodeField({
-            name: `written`,
-            node,
-            value: node.frontmatter.written,
-        })
+    createNodeField({
+      name: `written`,
+      node,
+      value: node.frontmatter.written,
+    })
 
-        createNodeField({
-            name: `date`,
-            node,
-            value: node.frontmatter.date,
-        })
+    createNodeField({
+      name: `date`,
+      node,
+      value: node.frontmatter.date,
+    })
 
-        createNodeField({
-            name: `category`,
-            node,
-            value: node.frontmatter.category,
-        })
-    }
+    createNodeField({
+      name: `category`,
+      node,
+      value: node.frontmatter.category,
+    })
+  }
 }
 
 const path = require("path")
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
-    const { createPage } = actions
+  const { createPage } = actions
 
-    const result = await graphql
-    (`
-        query {
-            allMdx {
-                edges {
-                    node {
-                        id
-                        fields {
-                            slug
-                            written
-                        }
-                    }
-                }
+  const result = await graphql(`
+    query {
+      allMdx {
+        edges {
+          node {
+            id
+            fields {
+              slug
+              written
             }
+          }
         }
-    `)
-
-    if (result.errors) {
-        reporter.panicOnBuild('🚨  ERROR: Loading "createPages" query')
+      }
     }
+  `)
 
-    // Create blog post pages.
-    const posts = Array.from(result.data.allMdx.edges)
-    posts.sort((postA, postB) => new Date(postB.node.fields.written).getTime() - new Date(postA.node.fields.written).getTime())
+  if (result.errors) {
+    reporter.panicOnBuild('🚨  ERROR: Loading "createPages" query')
+  }
 
-    posts.forEach(({ node }, index) => {
-        const previousId = posts.find((previous, previousIndex) => previousIndex === index + 1)?.node.id
-        const nextId = posts.find((next, nextIndex) => nextIndex === index - 1)?.node.id
+  // Create blog post pages.
+  const posts = Array.from(result.data.allMdx.edges)
+  posts.sort(
+    (postA, postB) =>
+      new Date(postB.node.fields.written).getTime() -
+      new Date(postA.node.fields.written).getTime()
+  )
 
-        createPage({
-            path: node.fields.slug,
-            component: path.resolve(`./src/components/post-page-template.js`),
-            context: { id: node.id, previousId, nextId },
-        })
+  posts.forEach(({ node }, index) => {
+    const previousId = posts.find(
+      (previous, previousIndex) => previousIndex === index + 1
+    )?.node.id
+    const nextId = posts.find((next, nextIndex) => nextIndex === index - 1)
+      ?.node.id
+
+    createPage({
+      path: node.fields.slug,
+      component: path.resolve(`./src/components/post-page-template.js`),
+      context: { id: node.id, previousId, nextId },
     })
+  })
 }
