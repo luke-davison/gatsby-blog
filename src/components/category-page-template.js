@@ -1,47 +1,49 @@
-import { graphql, Link } from "gatsby"
-import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import { graphql } from "gatsby"
 import React from "react"
+import PostList from "./post-list"
 
 import Page from "./page"
 
 export const query = graphql`
-    query PostsByCategory($id: String) {
+  query PostsByCategory($id: String) {
     site {
-        siteMetadata {
+      siteMetadata {
         title
         description
-        }
+      }
     }
     allMdx(
-        sort: { fields: [frontmatter___written], order: DESC }
-        filter: { frontmatter: { published: { eq: true }, category: { eq: $id } } }
+      sort: { fields: [frontmatter___written], order: DESC }
+      filter: {
+        frontmatter: { published: { eq: true }, category: { eq: $id } }
+      }
     ) {
-        nodes {
+      nodes {
         id
         frontmatter {
-            title
-            date(formatString: "Do MMMM YYYY")
-            written(formatString: "Do MMMM YYYY")
-            category
-            featuredImage {
+          title
+          date(formatString: "Do MMMM YYYY")
+          written(formatString: "Do MMMM YYYY")
+          category
+          featuredImage {
             childImageSharp {
-                gatsbyImageData(
+              gatsbyImageData(
                 width: 400
                 height: 400
                 transformOptions: { cropFocus: CENTER }
-                )
+              )
             }
-            }
+          }
         }
         fields {
-            slug
+          slug
         }
-        }
+      }
     }
-    }
+  }
 `
 
-export default function PostPageTemplate({ data }) {
+export default function CategoryPageTemplate({ data }) {
   return (
     <Page>
       <div>
@@ -49,22 +51,7 @@ export default function PostPageTemplate({ data }) {
         <p>{data.site.siteMetadata.description}</p>
       </div>
 
-      <div className="list-of-posts">
-        {data.allMdx.nodes.map(({ frontmatter, fields }, index) => {
-          let featuredImg = getImage(
-            frontmatter.featuredImage?.childImageSharp?.gatsbyImageData
-          )
-          return (
-            <Link key={index} to={fields.slug}>
-              <div className="post-container">
-                <GatsbyImage image={featuredImg} />
-                <h2 className="post-title">{frontmatter.title}</h2>
-                <p className="post-date">{frontmatter.date}</p>
-              </div>
-            </Link>
-          )
-        })}
-      </div>
+      <PostList posts={data.allMdx.nodes} />
     </Page>
   )
 }

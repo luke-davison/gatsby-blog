@@ -1,8 +1,8 @@
 import * as React from "react"
-import { graphql, Link } from "gatsby"
-import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import { graphql } from "gatsby"
 
 import Page from "../components/page"
+import PostList from "../components/post-list"
 
 import "@fontsource/cabin"
 import "@fontsource/raleway"
@@ -54,22 +54,7 @@ const HomePage = ({ data }) => {
         <p>{data.site.siteMetadata.description}</p>
       </div>
 
-      <div className="list-of-posts">
-        {data.allMdx.nodes.map(({ frontmatter, fields }, index) => {
-          let featuredImg = getImage(
-            frontmatter.featuredImage?.childImageSharp?.gatsbyImageData
-          )
-          return (
-            <Link key={index} to={fields.slug}>
-              <div className="post-container">
-                <GatsbyImage image={featuredImg} />
-                <h2 className="post-title">{frontmatter.title}</h2>
-                <p className="post-date">{frontmatter.date}</p>
-              </div>
-            </Link>
-          )
-        })}
-      </div>
+      <PostList posts={data.allMdx.nodes} />
     </Page>
   )
 }
