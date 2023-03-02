@@ -78,4 +78,14 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       context: { id: node.id, previousId, nextId },
     })
   })
+
+  const categoryIds = ["north-america-2023", "new-zealand-2022", "new-zealand-2020", "north-america-2019"]
+
+  categoryIds.forEach((category) => {
+    createPage({
+      path: "/" + category,
+      component: path.resolve(`./src/components/category-page-template.js`),
+      context: { id: category },
+    })
+  })
 }

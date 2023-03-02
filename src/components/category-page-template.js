@@ -1,51 +1,47 @@
-import * as React from "react"
 import { graphql, Link } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import React from "react"
 
-import Page from "../components/page"
-
-import "@fontsource/cabin"
-import "@fontsource/raleway"
+import Page from "./page"
 
 export const query = graphql`
-  query SITE_INDEX_QUERY {
+    query PostsByCategory($id: String) {
     site {
-      siteMetadata {
+        siteMetadata {
         title
         description
-      }
+        }
     }
     allMdx(
-      sort: { fields: [frontmatter___written], order: DESC }
-      filter: { frontmatter: { published: { eq: true } } }
+        sort: { fields: [frontmatter___written], order: DESC }
+        filter: { frontmatter: { published: { eq: true }, category: { eq: $id } } }
     ) {
-      nodes {
+        nodes {
         id
-        excerpt(pruneLength: 100)
         frontmatter {
-          title
-          date(formatString: "Do MMMM YYYY")
-          written(formatString: "Do MMMM YYYY")
-          category
-          featuredImage {
+            title
+            date(formatString: "Do MMMM YYYY")
+            written(formatString: "Do MMMM YYYY")
+            category
+            featuredImage {
             childImageSharp {
-              gatsbyImageData(
+                gatsbyImageData(
                 width: 400
                 height: 400
                 transformOptions: { cropFocus: CENTER }
-              )
+                )
             }
-          }
+            }
         }
         fields {
-          slug
+            slug
         }
-      }
+        }
     }
-  }
+    }
 `
 
-const HomePage = ({ data }) => {
+export default function PostPageTemplate({ data }) {
   return (
     <Page>
       <div>
@@ -72,5 +68,3 @@ const HomePage = ({ data }) => {
     </Page>
   )
 }
-
-export default HomePage
