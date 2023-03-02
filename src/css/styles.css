@@ -81,6 +81,8 @@ a {
     display: grid;
     gap: 24px;
     grid-template-columns: 400px 400px;
+    width: 824px;
+    margin: auto;
 }
 
 .list-of-posts img {
@@ -111,3 +113,19 @@ a {
     color: white;
     background-color: rgba(0, 0, 0, 0.4)
 }
+
+.category-list {
+    padding: 24px;
+    text-align: center;
+    display: grid;
+    gap: 24px;
+    grid-template-columns: 1fr 1fr;
+}
+
+@media (max-width: 850px) {
+    .list-of-posts {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+    }
+  }
+  

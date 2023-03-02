@@ -51,10 +51,10 @@ export const query = graphql`
 `
 
 export default function PostPageTemplate({ data }) {
-  const { body, frontmatter, next, previous, site } = data.post
+  const { body, frontmatter  } = data.post
   return (
     <Page>
-      <PageSiteHeader title={site.siteMetadata.title} />
+      <PageSiteHeader title={data.site.siteMetadata.title} />
       <header>
         <h1>{frontmatter.title}</h1>
         <h4>{"Date: " + frontmatter.date}</h4>
@@ -63,7 +63,7 @@ export default function PostPageTemplate({ data }) {
       <footer>
         <h4>{"Written: " + frontmatter.written}</h4>
         <h4>{"Category: " + frontmatter.category}</h4>
-        <PageBottomNavigation previous={previous} next={next} />
+        <PageBottomNavigation previous={data.previous} next={data.next} />
       </footer>
     </Page>
   )

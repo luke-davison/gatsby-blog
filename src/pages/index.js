@@ -1,11 +1,12 @@
 import * as React from "react"
-import { graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
 
 import Page from "../components/page"
 import PostList from "../components/post-list"
 
 import "@fontsource/cabin"
 import "@fontsource/raleway"
+import { categories } from "../categories"
 
 export const query = graphql`
   query SITE_INDEX_QUERY {
@@ -46,7 +47,7 @@ export const query = graphql`
   }
 `
 
-const HomePage = ({ data }) => {
+const HomePage = ({ data, ...rest }) => {
   return (
     <Page>
       <div>
@@ -54,7 +55,19 @@ const HomePage = ({ data }) => {
         <p>{data.site.siteMetadata.description}</p>
       </div>
 
+      <h2>Our holidays</h2>
+
+      <div className="category-list">
+        { categories.map(category => (
+          <Link to={category.slug}>{category.title}</Link>
+        ))}
+      </div>
+
+      <h2>Latest blog entries (newest to oldest)</h2>
+
       <PostList posts={data.allMdx.nodes} />
+
+      <p>This site doesn't have any fancy features like subscribing or commenting.  If you have a comment - please email it to me.  If you want to subscribe, let me know and I'll send you an email every time I upload a new entry.</p>
     </Page>
   )
 }
