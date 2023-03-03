@@ -44,13 +44,18 @@ h4 {
     text-align: center;
 }
 
-h2 {
+h2, h3 {
     font-family: Cabin;
     color: #181818;
     font-size: 22px;
     text-align: center;
     text-decoration: none;
     font-weight: 700;
+}
+
+h3 {
+    font-size: 20px;
+    font-weight: 500;
 }
 
 a {
@@ -68,7 +73,8 @@ a:hover {
     color: #181818;
 }
 
-.page-site-header {
+.page-site-header a  {
+    color: #181818;
     margin-bottom: 30px;
 }
 
@@ -87,8 +93,14 @@ a:hover {
     flex-direction: column;
 }
 
+.page-bottom-navigation .next-link {
+    align-items: flex-start;
+    text-align: left;
+}
+
 .page-bottom-navigation .previous-link {
     align-items: flex-end;
+    text-align: right;
 }
 
 .list-of-posts {
