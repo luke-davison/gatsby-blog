@@ -12,7 +12,7 @@ export default function PostList({ posts }) {
         return (
           <Link key={index} to={fields.slug}>
             <div className="post-container">
-              <GatsbyImage image={featuredImg} />
+              <GatsbyImage image={featuredImg} alt="Image" />
               <h2 className="post-title">{frontmatter.title}</h2>
               <p className="post-date">{frontmatter.date}</p>
             </div>
