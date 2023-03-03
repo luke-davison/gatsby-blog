@@ -63,11 +63,12 @@ const HomePage = ({ data, ...rest }) => {
         ))}
       </div>
 
-      <h2>Latest blog entries (newest to oldest)</h2>
+      <h2>Latest blog entries</h2>
 
       <PostList posts={data.allMdx.nodes} />
 
-      <p>This site doesn't have any fancy features like subscribing or commenting.  If you have a comment - please email it to me.  If you want to subscribe, let me know and I'll send you an email every time I upload a new entry.</p>
+      <p>This site doesn't have any fancy features like subscribing or commenting.</p>
+      <p>If you have a comment - please email it to me.  If you want to subscribe, let me know and I'll send you an email every time I upload a new entry.</p>
     </Page>
   )
 }

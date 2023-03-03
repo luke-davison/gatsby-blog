@@ -45,11 +45,12 @@ h4 {
 }
 
 h2 {
+    font-family: Cabin;
     color: #181818;
     font-size: 22px;
     text-align: center;
     text-decoration: none;
-    font-weight: 400;
+    font-weight: 700;
 }
 
 a {
@@ -91,8 +92,9 @@ a {
 
 .list-of-posts .post-container {
     position: relative;
-    width: 400px;
-    height: 400px;
+    max-width: 400px;
+    max-height: 400px;
+    width: 100%;
 }
 
 .list-of-posts .post-title {
@@ -122,10 +124,17 @@ a {
     grid-template-columns: 1fr 1fr;
 }
 
-@media (max-width: 850px) {
+@media (max-width: 900px) {
     .list-of-posts {
         grid-template-columns: 1fr;
         max-width: 400px;
+        width: 100%;
     }
-  }
+}
+
+@media (max-width: 400px) {
+    .category-list {
+        grid-template-columns: 1fr;
+    }
+}
   
