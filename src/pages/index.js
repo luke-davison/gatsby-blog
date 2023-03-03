@@ -18,6 +18,11 @@ export const query = graphql`
     }
     allMdx(
       limit: 4
+      sort: { frontmatter: { written: DESC } }
+      filter: { frontmatter: { published: { eq: true } } }
+    )
+    allMdx(
+      limit: 4
       sort: { fields: [frontmatter___written], order: DESC }
       filter: { frontmatter: { published: { eq: true } } }
     ) {

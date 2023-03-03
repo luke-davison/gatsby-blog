@@ -15,8 +15,8 @@ export const query = graphql`
       }
     }
     allMdx(
-      sort: {frontmatter: {written: DESC}}
-      filter: {frontmatter: {published: {eq: true}, category: {eq: $id}}}
+      sort: { frontmatter: { written: DESC } }
+      filter: { frontmatter: { published: { eq: true }, category: { eq: $id } } }
     ) {
       nodes {
         id
