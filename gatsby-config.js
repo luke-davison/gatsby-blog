@@ -10,6 +10,7 @@ module.exports = {
     description: `This blog is a place where we share our photos and stories with... ourselves mostly.  This is basically just a modern day photo album.  But you are welcome to look through it too.`,
   },
   plugins: [
+    `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
     `gatsby-remark-images`,
