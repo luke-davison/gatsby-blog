@@ -1,6 +1,7 @@
-import { graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 import React from "react"
+import { categories } from "../categories"
 
 import Page from "./page"
 import PageBottomNavigation from "./page-bottom-navigation"
@@ -52,6 +53,7 @@ export const query = graphql`
 
 export default function PostPageTemplate({ data }) {
   const { body, frontmatter  } = data.post
+  const category = categories.find(cat => cat.category === frontmatter.category)
   return (
     <Page>
       <PageSiteHeader title={data.site.siteMetadata.title} />
@@ -62,7 +64,10 @@ export default function PostPageTemplate({ data }) {
       <MDXRenderer>{body}</MDXRenderer>
       <footer>
         <h4>{"Written: " + frontmatter.written}</h4>
-        <h4>{"Category: " + frontmatter.category}</h4>
+        <h4>
+
+        <Link to={category.slug}>{category.title}</Link>
+        </h4>
         <PageBottomNavigation previous={data.previous} next={data.next} />
       </footer>
     </Page>
