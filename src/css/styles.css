@@ -10,11 +10,18 @@ h1 {
     text-align: center;
 }
 
-p {
+p, li {
     color: #74767e;
     font-family: Raleway;
     font-size: 1rem;
     word-wrap: break-word;
+}
+
+li {
+    margin-bottom: 8px;
+}
+
+p {
     margin-bottom: 32px;
 }
 
