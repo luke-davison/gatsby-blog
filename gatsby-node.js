@@ -47,6 +47,9 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
               slug
               written
             }
+            internal {
+              contentFilePath
+            }
           }
         }
       }
@@ -65,6 +68,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       new Date(postA.node.fields.written).getTime()
   )
 
+  const template = path.resolve(`./src/components/post-page-template.js`)
+
   posts.forEach(({ node }, index) => {
     const previousId = posts.find(
       (previous, previousIndex) => previousIndex === index + 1
@@ -74,7 +79,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
     createPage({
       path: node.fields.slug,
-      component: path.resolve(`./src/components/post-page-template.js`),
+      component: `${template}?__contentFilePath=${node.internal.contentFilePath}`,
       context: { id: node.id, previousId, nextId },
     })
   })

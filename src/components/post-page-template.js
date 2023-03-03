@@ -1,5 +1,4 @@
 import { graphql, Link } from "gatsby"
-import { MDXRenderer } from "gatsby-plugin-mdx"
 import React from "react"
 import { categories } from "../categories"
 
@@ -16,7 +15,6 @@ export const query = graphql`
       }
     }
     post: mdx(id: { eq: $id }) {
-      body
       frontmatter {
         title
         date(formatString: "Do MMMM YYYY")
@@ -25,7 +23,6 @@ export const query = graphql`
       }
     }
     previous: mdx(id: { eq: $previousId }) {
-      body
       frontmatter {
         title
         date(formatString: "Do MMMM YYYY")
@@ -37,7 +34,6 @@ export const query = graphql`
       }
     }
     next: mdx(id: { eq: $nextId }) {
-      body
       frontmatter {
         title
         date(formatString: "Do MMMM YYYY")
@@ -51,8 +47,8 @@ export const query = graphql`
   }
 `
 
-export default function PostPageTemplate({ data }) {
-  const { body, frontmatter  } = data.post
+export default function PostPageTemplate({ data, children }) {
+  const { frontmatter } = data.post
   const category = categories.find(cat => cat.category === frontmatter.category)
   return (
     <Page>
@@ -61,12 +57,11 @@ export default function PostPageTemplate({ data }) {
         <h1>{frontmatter.title}</h1>
         <h4>{"Date: " + frontmatter.date}</h4>
       </header>
-      <MDXRenderer>{body}</MDXRenderer>
+      {children}
       <footer>
         <h4>{"Written: " + frontmatter.written}</h4>
         <h4>
-
-        <Link to={category.slug}>{category.title}</Link>
+          <Link to={category.slug}>{category.title}</Link>
         </h4>
         <PageBottomNavigation previous={data.previous} next={data.next} />
       </footer>

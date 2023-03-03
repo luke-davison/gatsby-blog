@@ -58,8 +58,10 @@ const HomePage = ({ data, ...rest }) => {
       <h2>Our holidays</h2>
 
       <div className="category-list">
-        { categories.map(category => (
-          <Link key={category.category} to={category.slug}>{category.title}</Link>
+        {categories.map(category => (
+          <Link key={category.category} to={category.slug}>
+            {category.title}
+          </Link>
         ))}
       </div>
 
@@ -67,8 +69,14 @@ const HomePage = ({ data, ...rest }) => {
 
       <PostList posts={data.allMdx.nodes} />
 
-      <p>This site doesn't have any fancy features like subscribing or commenting.</p>
-      <p>If you have a comment - please email it to me.  If you want to subscribe, let me know and I'll send you an email every time I upload a new entry.</p>
+      <p>
+        This site doesn't have any fancy features like subscribing or
+        commenting.
+      </p>
+      <p>
+        If you have a comment - please email it to me. If you want to subscribe,
+        let me know and I'll send you an email every time I upload a new entry.
+      </p>
     </Page>
   )
 }

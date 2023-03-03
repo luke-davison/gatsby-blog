@@ -16,7 +16,9 @@ export const query = graphql`
     }
     allMdx(
       sort: { frontmatter: { written: DESC } }
-      filter: { frontmatter: { published: { eq: true }, category: { eq: $id } } }
+      filter: {
+        frontmatter: { published: { eq: true }, category: { eq: $id } }
+      }
     ) {
       nodes {
         id
@@ -44,14 +46,16 @@ export const query = graphql`
 `
 
 export default function CategoryPageTemplate({ data, pageContext }) {
-  const { title, description } = categories.find(({ category }) => category === pageContext.id)
+  const { title, description } = categories.find(
+    ({ category }) => category === pageContext.id
+  )
 
   return (
     <Page>
       <PageSiteHeader title={data.site.siteMetadata.title} />
       <div>
-        <h1>{ title }</h1>
-        <p>{ description }</p>
+        <h1>{title}</h1>
+        <p>{description}</p>
       </div>
 
       <PostList posts={data.allMdx.nodes} />
