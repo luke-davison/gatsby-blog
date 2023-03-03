@@ -54,9 +54,18 @@ h2 {
 }
 
 a {
-    color: #181818;
+    color: rgb(62, 105, 220);
     text-decoration: none;
-    font-family: Segoe UI;
+    font-family: Raleway;
+    transition: color 0.4s;
+    text-decoration: underline;
+    padding: 0.25em 0;
+    display: block;
+    text-underline-offset: 6px;
+}
+
+a:hover {
+    color: #181818;
 }
 
 .page-site-header {
@@ -67,6 +76,10 @@ a {
     display: flex;
     justify-content: space-between;
     font-size: 16px;
+}
+
+.page-bottom-navigation a {
+    text-underline-offset: 4px;
 }
 
 .page-bottom-navigation .previous-link, .page-bottom-navigation .next-link {

@@ -59,7 +59,7 @@ const HomePage = ({ data, ...rest }) => {
 
       <div className="category-list">
         { categories.map(category => (
-          <Link to={category.slug}>{category.title}</Link>
+          <Link key={category.category} to={category.slug}>{category.title}</Link>
         ))}
       </div>
 
