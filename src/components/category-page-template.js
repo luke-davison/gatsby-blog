@@ -8,12 +8,6 @@ import Page from "./page"
 
 export const query = graphql`
   query PostsByCategory($id: String) {
-    site {
-      siteMetadata {
-        title
-        description
-      }
-    }
     allMdx(
       sort: { frontmatter: { written: DESC } }
       filter: {
@@ -21,12 +15,9 @@ export const query = graphql`
       }
     ) {
       nodes {
-        id
         frontmatter {
           title
           date(formatString: "Do MMMM YYYY")
-          written(formatString: "Do MMMM YYYY")
-          category
           featuredImage {
             childImageSharp {
               gatsbyImageData(
@@ -52,7 +43,7 @@ export default function CategoryPageTemplate({ data, pageContext }) {
 
   return (
     <Page>
-      <PageSiteHeader title={data.site.siteMetadata.title} />
+      <PageSiteHeader />
       <div>
         <h1>{title}</h1>
         <p>{description}</p>
