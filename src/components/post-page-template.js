@@ -8,12 +8,6 @@ import PageSiteHeader from "./page-site-header"
 
 export const query = graphql`
   query PostsByID($id: String, $previousId: String, $nextId: String) {
-    site {
-      siteMetadata {
-        title
-        description
-      }
-    }
     post: mdx(id: { eq: $id }) {
       frontmatter {
         title
@@ -25,9 +19,6 @@ export const query = graphql`
     previous: mdx(id: { eq: $previousId }) {
       frontmatter {
         title
-        date(formatString: "Do MMMM YYYY")
-        written(formatString: "Do MMMM YYYY")
-        category
       }
       fields {
         slug
@@ -36,9 +27,6 @@ export const query = graphql`
     next: mdx(id: { eq: $nextId }) {
       frontmatter {
         title
-        date(formatString: "Do MMMM YYYY")
-        written(formatString: "Do MMMM YYYY")
-        category
       }
       fields {
         slug
@@ -52,7 +40,7 @@ export default function PostPageTemplate({ data, children }) {
   const category = categories.find(cat => cat.category === frontmatter.category)
   return (
     <Page>
-      <PageSiteHeader title={data.site.siteMetadata.title} />
+      <PageSiteHeader />
       <header>
         <h1>{frontmatter.title}</h1>
         <h4>{"Date: " + frontmatter.date}</h4>
