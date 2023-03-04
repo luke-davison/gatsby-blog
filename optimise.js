@@ -2,7 +2,7 @@ const sharp = require(`sharp`)
 const { glob } = require(`glob`)
 const fs = require(`fs-extra`)
 
-const matches = glob.globSync(`src/posts/**/*.{png,jpg,jpeg}`)
+const matches = glob.globSync(`src/posts/new/*.{png,jpg,jpeg}`)
 const MAX_WIDTH = 1100
 const QUALITY = 90
 

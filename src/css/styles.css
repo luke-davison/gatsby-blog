@@ -131,11 +131,12 @@ a:hover {
 
 .list-of-posts .post-title {
     position: absolute;
-    width: 100%;
+    width: calc(100% - 20px);
     top: 0;
     left: 0;
     color: white;
-    background-color: rgba(0, 0, 0, 0.4)
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 0 10px;
 }
 
 .list-of-posts .post-date {
