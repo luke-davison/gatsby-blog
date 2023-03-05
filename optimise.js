@@ -2,7 +2,9 @@ const sharp = require(`sharp`)
 const { glob } = require(`glob`)
 const fs = require(`fs-extra`)
 
-const matches = glob.globSync(`src/posts/new/*.{png,jpg,jpeg}`)
+// change this to the folder name for a new blog post
+// be careful not to optimise images that were already optimised
+const matches = glob.globSync(`src/posts/xxxxx/*.{png,jpg,jpeg}`)
 const MAX_WIDTH = 1100
 const QUALITY = 90
 
