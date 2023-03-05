@@ -4,7 +4,7 @@ export const categories = [
     title: "Miscellaneous",
     category: "miscellaneous",
     description:
-      "This is a place for any extra blog posts - not tied to a specific holiday."
+      "This is a place for any extra blog posts - not tied to a specific holiday or trip."
   },
   {
     slug: "/north-america-2019",
