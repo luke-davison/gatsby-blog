@@ -9,7 +9,6 @@ import PageSiteHeader from "./page-site-header"
 export const query = graphql`
   query PostsByID($id: String, $previousId: String, $nextId: String) {
     post: mdx(id: { eq: $id }) {
-      id
       frontmatter {
         title
         date(formatString: "Do MMMM YYYY")
@@ -37,7 +36,6 @@ export const query = graphql`
 `
 
 export default function PostPageTemplate({ data, children }) {
-  console.log('data is', data)
   const { frontmatter } = data.post
   const category = categories.find(cat => cat.category === frontmatter.category)
   return (

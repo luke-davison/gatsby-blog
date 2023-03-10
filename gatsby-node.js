@@ -63,31 +63,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   // Create blog post pages.
   const posts = Array.from(result.data.allMdx.edges)
-  posts.sort(
-    (postA, postB) =>
-      new Date(postB.node.fields.written).getTime() -
-      new Date(postA.node.fields.written).getTime()
-  )
 
   const template = path.resolve(`./src/components/post-page-template.js`)
-
-  posts.forEach(({ node }) => {
-    const categoryPosts = posts.filter(
-      post => post.node.fields.category === node.fields.category
-    )
-
-    const postIndex = categoryPosts.findIndex(post => post.node.id === node.id)
-    const previousId = categoryPosts.find(
-      (previous, previousIndex) => previousIndex === postIndex + 1
-    )?.node.id
-    const nextId = categoryPosts.find((next, nextIndex) => nextIndex === postIndex - 1)
-      ?.node.id
-    createPage({
-      path: node.fields.slug,
-      component: `${template}?__contentFilePath=${node.internal.contentFilePath}`,
-      context: { id: node.id, previousId, nextId },
-    })
-  })
 
   const categoryIds = [
     "north-america-2023",
@@ -97,11 +74,34 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     "miscellaneous",
   ]
 
-  categoryIds.forEach(category => {
+  categoryIds.forEach((category) => {
     createPage({
       path: "/" + category,
       component: path.resolve(`./src/components/category-page-template.js`),
       context: { id: category },
+    })
+
+    const categoryPosts = posts.filter(
+      post => post.node.fields.category === category
+    )
+
+    categoryPosts.sort(
+      (postA, postB) =>
+        new Date(postB.node.fields.written).getTime() -
+        new Date(postA.node.fields.written).getTime()
+    )
+
+    categoryPosts.forEach(({ node }, index) => {
+      const previousId = categoryPosts.find(
+        (previous, previousIndex) => previousIndex === index + 1
+      )?.node.id
+      const nextId = categoryPosts.find((next, nextIndex) => nextIndex === index - 1)
+        ?.node.id
+      createPage({
+        path: node.fields.slug,
+        component: `${template}?__contentFilePath=${node.internal.contentFilePath}`,
+        context: { id: node.id, previousId, nextId },
+      })
     })
   })
 }
