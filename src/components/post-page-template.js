@@ -36,6 +36,7 @@ export const query = graphql`
 `
 
 export default function PostPageTemplate({ data, children }) {
+  console.log('data is', data)
   const { frontmatter } = data.post
   const category = categories.find(cat => cat.category === frontmatter.category)
   return (
