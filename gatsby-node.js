@@ -46,6 +46,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
             fields {
               slug
               written
+              category
             }
             internal {
               contentFilePath
@@ -70,12 +71,18 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   const template = path.resolve(`./src/components/post-page-template.js`)
 
-  posts.forEach(({ node }, index) => {
-    const previousId = posts.find(
-      (previous, previousIndex) => previousIndex === index + 1
-    )?.node.id
-    const nextId = posts.find((next, nextIndex) => nextIndex === index - 1)
-      ?.node.id
+  posts.forEach(({ node }) => {
+    const categoryPosts = posts.filter(
+      post => post.node.fields.category === node.fields.category
+    )
+
+    const postIndex = categoryPosts.findIndex(post => post.node.id === node.id)
+    const previousId =
+      postIndex < categoryPosts.length - 1
+        ? categoryPosts[postIndex + 1].node.id
+        : undefined
+    const nextId =
+      postIndex > 0 ? categoryPosts[postIndex - 1].node.id : undefined
 
     createPage({
       path: node.fields.slug,
@@ -89,7 +96,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     "new-zealand-2022",
     "new-zealand-2020",
     "north-america-2019",
-    "miscellaneous"
+    "miscellaneous",
   ]
 
   categoryIds.forEach(category => {

@@ -4,7 +4,7 @@ export const categories = [
     title: "Miscellaneous",
     category: "miscellaneous",
     description:
-      "This is a place for any extra blog posts - not tied to a specific holiday or trip."
+      "This is a place for any extra blog posts - not tied to a specific holiday or trip.",
   },
   {
     slug: "/north-america-2019",
@@ -34,5 +34,5 @@ export const categories = [
     description:
       "An initial road trip around Canada and the United States at the start of our working holiday.",
     inProgress: true,
-  }
+  },
 ].reverse()

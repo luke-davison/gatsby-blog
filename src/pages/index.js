@@ -55,7 +55,7 @@ const HomePage = ({ data, ...rest }) => {
         <p>{data.site.siteMetadata.description}</p>
       </div>
 
-      <h2>Our holidays</h2>
+      <h2>Categories</h2>
 
       <div className="category-list">
         {categories.map(category => (
