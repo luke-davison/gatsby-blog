@@ -21,11 +21,11 @@ export const categories = [
       "Several days in Queenstown with some of Betty's family followed by a two week road trip around the lower North Island at the start of Summer.",
   },
   {
-    slug: "/new-zealand-2022",
-    title: "New Zealand 2022",
-    category: "new-zealand-2022",
+    slug: "/south-island-2022",
+    title: "South Island 2022",
+    category: "south-island-2022",
     description:
-      "A three week road trip around the southern South Island in late February / Early March.",
+      "A three week road trip around the southern South Island in late February / early March.",
   },
   {
     slug: "/north-america-2023",

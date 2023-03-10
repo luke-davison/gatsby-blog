@@ -91,7 +91,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   const categoryIds = [
     "north-america-2023",
-    "new-zealand-2022",
+    "south-island-2022",
     "new-zealand-2020",
     "north-america-2019",
     "miscellaneous",
