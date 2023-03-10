@@ -77,13 +77,11 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     )
 
     const postIndex = categoryPosts.findIndex(post => post.node.id === node.id)
-    const previousId =
-      postIndex < categoryPosts.length - 1
-        ? categoryPosts[postIndex + 1].node.id
-        : undefined
-    const nextId =
-      postIndex > 0 ? categoryPosts[postIndex - 1].node.id : undefined
-
+    const previousId = categoryPosts.find(
+      (previous, previousIndex) => previousIndex === postIndex + 1
+    )?.node.id
+    const nextId = categoryPosts.find((next, nextIndex) => nextIndex === postIndex - 1)
+      ?.node.id
     createPage({
       path: node.fields.slug,
       component: `${template}?__contentFilePath=${node.internal.contentFilePath}`,
