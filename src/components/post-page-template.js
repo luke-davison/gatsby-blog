@@ -9,6 +9,7 @@ import PageSiteHeader from "./page-site-header"
 export const query = graphql`
   query PostsByID($id: String, $previousId: String, $nextId: String) {
     post: mdx(id: { eq: $id }) {
+      id
       frontmatter {
         title
         date(formatString: "Do MMMM YYYY")
