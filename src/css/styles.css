@@ -150,11 +150,15 @@ a:hover {
 }
 
 .category-list {
-    padding: 24px;
+    padding: 0 24px;
     text-align: center;
     display: grid;
     gap: 24px;
     grid-template-columns: 1fr 1fr;
+}
+
+.category-list > a:last-child:nth-child(2n + 1) {
+    grid-column: 1 / span 2;
 }
 
 @media (max-width: 900px) {
