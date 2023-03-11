@@ -1,7 +1,7 @@
 {
-  "name": "gatsby-starter-hello-world",
+  "name": "luke-and-betty-gatsby-blog",
   "private": true,
-  "description": "A simplified bare-bones starter for Gatsby",
+  "description": "A travel blog made in Gatsby",
   "version": "0.1.0",
   "license": "0BSD",
   "scripts": {

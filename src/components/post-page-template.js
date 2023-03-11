@@ -39,7 +39,7 @@ export default function PostPageTemplate({ data, children }) {
   const { frontmatter } = data.post
   const category = categories.find(cat => cat.category === frontmatter.category)
   return (
-    <Page>
+    <Page className="post-page">
       <PageSiteHeader />
       <header>
         <h1>{frontmatter.title}</h1>

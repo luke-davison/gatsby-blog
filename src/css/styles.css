@@ -25,6 +25,10 @@ p {
     margin-bottom: 32px;
 }
 
+.post-page .gatsby-resp-image-wrapper {
+    margin-bottom: 32px;
+}
+
 html {
     font-size: 20px;
 }
@@ -37,8 +41,8 @@ html {
 
 blockquote p {
     font-size: 0.69444rem;
-    margin-top: 8px;
-    margin-bottom: 16px;
+    margin-top: -8px;
+    margin-bottom: 24px;
     text-align: center;
     color: #767676;
 }
@@ -103,11 +107,13 @@ a:hover {
 .page-bottom-navigation .next-link {
     align-items: flex-start;
     text-align: left;
+    margin-right: 20px;
 }
 
 .page-bottom-navigation .previous-link {
     align-items: flex-end;
     text-align: right;
+    margin-left: 20px;
 }
 
 .list-of-posts {
