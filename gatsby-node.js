@@ -94,9 +94,9 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     categoryPosts.forEach(({ node }, index) => {
       const previousId = categoryPosts.find(
         (previous, previousIndex) => previousIndex === index + 1
-      )?.node.id
+      )?.node.id ?? null
       const nextId = categoryPosts.find((next, nextIndex) => nextIndex === index - 1)
-        ?.node.id
+        ?.node.id ?? null
       createPage({
         path: node.fields.slug,
         component: `${template}?__contentFilePath=${node.internal.contentFilePath}`,
