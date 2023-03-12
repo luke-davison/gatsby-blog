@@ -1,13 +1,16 @@
+import { Link } from "gatsby-link"
 import React from "react"
 
+import Page from "../components/page"
+import PageSiteHeader from "../components/page-site-header"
 import { useSiteMetadata } from "../hooks/use-site-metadata"
 
-export default function About() {
+export default function FourOhFour() {
   const { title, description } = useSiteMetadata()
   return (
-    <div>
-      <h1>Welcome to {title}</h1>
-      <p>About: {description}</p>
-    </div>
+    <Page>
+      <PageSiteHeader/>
+      <p>I don't know how you got here but there's clearly been a mistake.</p>
+    </Page>
   )
 }
