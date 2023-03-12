@@ -5,6 +5,7 @@ import { categories } from "../categories"
 import PageSiteHeader from "./page-site-header"
 
 import Page from "./page"
+import HtmlHead from "./html-head"
 
 export const query = graphql`
   query PostsByCategory($id: String) {
@@ -53,3 +54,4 @@ export default function CategoryPageTemplate({ data, pageContext }) {
     </Page>
   )
 }
+export const Head = () => <HtmlHead />

@@ -74,7 +74,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     "miscellaneous",
   ]
 
-  categoryIds.forEach((category) => {
+  categoryIds.forEach(category => {
     createPage({
       path: "/" + category,
       component: path.resolve(`./src/components/category-page-template.js`),
@@ -92,11 +92,13 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     )
 
     categoryPosts.forEach(({ node }, index) => {
-      const previousId = categoryPosts.find(
-        (previous, previousIndex) => previousIndex === index + 1
-      )?.node.id ?? null
-      const nextId = categoryPosts.find((next, nextIndex) => nextIndex === index - 1)
-        ?.node.id ?? null
+      const previousId =
+        categoryPosts.find(
+          (previous, previousIndex) => previousIndex === index + 1
+        )?.node.id ?? null
+      const nextId =
+        categoryPosts.find((next, nextIndex) => nextIndex === index - 1)?.node
+          .id ?? null
       createPage({
         path: node.fields.slug,
         component: `${template}?__contentFilePath=${node.internal.contentFilePath}`,

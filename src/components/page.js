@@ -8,10 +8,5 @@ export default function Page({ children, className }) {
     _className += ` ${className}`
   }
 
-  return (
-    <>
-      <title>The Luke and Betty Blog</title>
-      <div className={_className}>{children}</div>
-    </>
-  )
+  return <div className={_className}>{children}</div>
 }

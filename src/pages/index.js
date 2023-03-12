@@ -1,12 +1,13 @@
 import * as React from "react"
 import { graphql, Link } from "gatsby"
 
+import { categories } from "../categories"
+import HtmlHead from "../components/html-head"
 import Page from "../components/page"
 import PostList from "../components/post-list"
 
 import "@fontsource/cabin"
 import "@fontsource/raleway"
-import { categories } from "../categories"
 
 export const query = graphql`
   query SITE_INDEX_QUERY {
@@ -80,5 +81,7 @@ const HomePage = ({ data, ...rest }) => {
     </Page>
   )
 }
+
+export const Head = () => <HtmlHead />
 
 export default HomePage

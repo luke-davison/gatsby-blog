@@ -1,6 +1,7 @@
 import { graphql, Link } from "gatsby"
 import React from "react"
 import { categories } from "../categories"
+import HtmlHead from "./html-head"
 
 import Page from "./page"
 import PageBottomNavigation from "./page-bottom-navigation"
@@ -53,6 +54,11 @@ export default function PostPageTemplate({ data, children }) {
         </h4>
         <PageBottomNavigation previous={data.previous} next={data.next} />
       </footer>
+      <h4>
+        <Link to="/">{category.title}</Link>
+      </h4>
     </Page>
   )
 }
+
+export const Head = () => <HtmlHead />
