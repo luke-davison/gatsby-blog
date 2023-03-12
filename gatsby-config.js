@@ -7,7 +7,7 @@
 module.exports = {
   siteMetadata: {
     title: `The Luke and Betty Blog`,
-    description: `This blog is a place where we share our photos and stories with... ourselves mostly.  This is basically just a modern day photo album.  But you are welcome to look through it too.`,
+    description: `This blog is a place where we share our photos and stories with... ourselves mostly.  This is basically just a modern day photo album where we have catalogued our memories.  But you are welcome to look through it too.`,
   },
   plugins: [
     `gatsby-plugin-image`,
