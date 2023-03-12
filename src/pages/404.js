@@ -1,12 +1,10 @@
-import { Link } from "gatsby-link"
 import React from "react"
 
+import HtmlHead from "../components/html-head"
 import Page from "../components/page"
 import PageSiteHeader from "../components/page-site-header"
-import { useSiteMetadata } from "../hooks/use-site-metadata"
 
 export default function FourOhFour() {
-  const { title, description } = useSiteMetadata()
   return (
     <Page>
       <PageSiteHeader/>
@@ -14,3 +12,5 @@ export default function FourOhFour() {
     </Page>
   )
 }
+
+export const Head = () => <HtmlHead />
