@@ -55,7 +55,7 @@ export default function PostPageTemplate({ data, children }) {
         <PageBottomNavigation previous={data.previous} next={data.next} />
       </footer>
       <h4>
-        <Link to="/">{category.title}</Link>
+        <Link to="/">Home</Link>
       </h4>
     </Page>
   )
