@@ -71,7 +71,6 @@ h3 {
 
 a {
     color: rgb(62, 105, 220);
-    text-decoration: none;
     font-family: Raleway;
     transition: color 0.4s;
     text-decoration: underline;
@@ -177,7 +176,8 @@ a:hover {
 
 @media (max-width: 400px) {
     .category-list {
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column;
     }
 }
   
