@@ -33,6 +33,12 @@ export const categories = [
     category: "north-america-2023",
     description:
       "An initial road trip around Canada and the United States at the start of our working holiday.",
-    inProgress: true,
+  },
+  {
+    slug: "/north-america-2023-2",
+    title: "More North America 2023",
+    category: "north-america-2023-2",
+    description:
+      "A continuation of our trips and adventures during our time in North America",
   },
 ].reverse()

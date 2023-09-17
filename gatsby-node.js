@@ -39,11 +39,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   const result = await graphql(`
     query AllPosts {
-      allMdx(
-        filter: {
-          frontmatter: { published: { eq: true } }
-        }
-      ) {
+      allMdx(filter: { frontmatter: { published: { eq: true } } }) {
         edges {
           node {
             id
@@ -71,6 +67,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   const template = path.resolve(`./src/components/post-page-template.js`)
 
   const categoryIds = [
+    "north-america-2023-2",
     "north-america-2023",
     "south-island-2022",
     "new-zealand-2020",
