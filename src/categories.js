@@ -39,6 +39,6 @@ export const categories = [
     title: "More North America 2023",
     category: "north-america-2023-2",
     description:
-      "A continuation of our trips and adventures during our time in North America",
+      "A continuation of our trips, adventures, and mis-adventures during our time in North America",
   },
 ].reverse()
