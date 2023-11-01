@@ -73,6 +73,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     "new-zealand-2020",
     "north-america-2019",
     "miscellaneous",
+    "draft",
   ]
 
   categoryIds.forEach(category => {

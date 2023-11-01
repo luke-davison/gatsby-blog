@@ -59,11 +59,13 @@ const HomePage = ({ data, ...rest }) => {
       <h2>Categories</h2>
 
       <div className="category-list">
-        {categories.map(category => (
-          <Link key={category.category} to={category.slug}>
-            {category.title}
-          </Link>
-        ))}
+        {categories
+          .filter(category => category.category !== "draft")
+          .map(category => (
+            <Link key={category.category} to={category.slug}>
+              {category.title}
+            </Link>
+          ))}
       </div>
 
       <h2>Latest blog entries</h2>

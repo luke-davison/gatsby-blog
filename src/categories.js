@@ -1,5 +1,11 @@
 export const categories = [
   {
+    slug: "/draft",
+    title: "Draft",
+    category: "draft",
+    description: "These articles are not finished",
+  },
+  {
     slug: "/miscellaneous",
     title: "Miscellaneous",
     category: "miscellaneous",
