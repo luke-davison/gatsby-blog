@@ -3,7 +3,7 @@ export const categories = [
     slug: "/draft",
     title: "Draft",
     category: "draft",
-    description: "These articles are not finished",
+    description: "These articles are not finished.  How'd you even get here?",
   },
   {
     slug: "/miscellaneous",
