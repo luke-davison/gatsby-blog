@@ -64,6 +64,17 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   // Create blog post pages.
   const posts = Array.from(result.data.allMdx.edges)
 
+  const postsToRandomise = Array.from(result.data.allMdx.edges).filter(post => {
+    return post.node.fields.category !== "draft"
+  })
+  const randomPosts = []
+
+  while (postsToRandomise.length > 0) {
+    const r = Math.floor(Math.random() * postsToRandomise.length)
+    const post = postsToRandomise.splice(r, 1)[0]
+    randomPosts.push(post)
+  }
+
   const template = path.resolve(`./src/components/post-page-template.js`)
 
   const categoryIds = [
@@ -101,10 +112,21 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       const nextId =
         categoryPosts.find((next, nextIndex) => nextIndex === index - 1)?.node
           .id ?? null
+      const randomPosition = randomPosts.findIndex(
+        post => post?.node?.id === node?.id
+      )
+      let nextRandomId = undefined
+
+      if (randomPosition !== -1) {
+        const nextRandomPosition =
+          randomPosition === randomPosts.length - 1 ? 0 : randomPosition + 1
+        nextRandomId = randomPosts[nextRandomPosition]?.node?.id ?? null
+      }
+
       createPage({
         path: node.fields.slug,
         component: `${template}?__contentFilePath=${node.internal.contentFilePath}`,
-        context: { id: node.id, previousId, nextId },
+        context: { id: node.id, previousId, nextId, nextRandomId },
       })
     })
   })

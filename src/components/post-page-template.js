@@ -8,7 +8,12 @@ import PageBottomNavigation from "./page-bottom-navigation"
 import PageSiteHeader from "./page-site-header"
 
 export const query = graphql`
-  query PostsByID($id: String, $previousId: String, $nextId: String) {
+  query PostsByID(
+    $id: String
+    $previousId: String
+    $nextId: String
+    $nextRandomId: String
+  ) {
     post: mdx(id: { eq: $id }) {
       frontmatter {
         title
@@ -29,6 +34,11 @@ export const query = graphql`
       frontmatter {
         title
       }
+      fields {
+        slug
+      }
+    }
+    randomPost: mdx(id: { eq: $nextRandomId }) {
       fields {
         slug
       }
@@ -57,6 +67,11 @@ export default function PostPageTemplate({ data, children }) {
       <h4>
         <Link to="/">Home</Link>
       </h4>
+      {data.randomPost?.fields?.slug && (
+        <h4>
+          <Link to={data.randomPost.fields.slug}>Random</Link>
+        </h4>
+      )}
     </Page>
   )
 }
