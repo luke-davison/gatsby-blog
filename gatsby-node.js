@@ -78,6 +78,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   const template = path.resolve(`./src/components/post-page-template.js`)
 
   const categoryIds = [
+    "taiwan-2023",
     "north-america-2023-2",
     "north-america-2023",
     "south-island-2022",

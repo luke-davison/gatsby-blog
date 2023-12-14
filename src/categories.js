@@ -47,4 +47,10 @@ export const categories = [
     description:
       "A continuation of our trips, adventures, and mis-adventures during our time in North America",
   },
+  {
+    slug: "/taiwan-2023",
+    title: "Taiwan 2023",
+    category: "taiwan-2023",
+    description: "Tales from Betty's trip to Taiwan in December 2023",
+  },
 ].reverse()
