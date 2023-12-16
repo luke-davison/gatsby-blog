@@ -51,6 +51,7 @@ export const categories = [
     slug: "/taiwan-2023",
     title: "Taiwan 2023",
     category: "taiwan-2023",
-    description: "Tales from Betty's trip to Taiwan in December 2023",
+    description:
+      "Tales from Betty's trip (without me) to Taiwan in December 2023",
   },
 ].reverse()
