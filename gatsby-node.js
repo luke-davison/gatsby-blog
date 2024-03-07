@@ -84,6 +84,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     "south-island-2022",
     "new-zealand-2020",
     "north-america-2019",
+    "china-australia-2017",
     "miscellaneous",
     "draft",
   ]

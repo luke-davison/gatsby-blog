@@ -13,6 +13,13 @@ export const categories = [
       "This is a place for any extra blog posts - not tied to a specific holiday or trip.",
   },
   {
+    slug: "/china-australia-2017",
+    title: "China / Australia 2017",
+    category: "china-australia-2017",
+    description:
+      "Travels with Betty's family in 2017 when I was unemployed.  These posts were all compiled many years later.",
+  },
+  {
     slug: "/north-america-2019",
     title: "North America 2019",
     category: "north-america-2019",
